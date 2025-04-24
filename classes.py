@@ -1,4 +1,5 @@
 from enum import Enum
+from warnings import warn
 
 
 class CommandLineArguments:
@@ -13,6 +14,11 @@ class PredictionType(Enum):
     QUALITY_SCORE = 'QUALITY_SCORE'
     FFT = 'FFT'
 
+class JawClenchPredictionValues(Enum):
+    CLENCHED = 'JawClench'
+    NOTHING = 'Nothing'
+
+
 class PredictionMessage:
     idun_id: str
     device_id: str
@@ -24,3 +30,15 @@ class PredictionMessage:
         self.device_id = data.deviceId
         self.type = PredictionType[data.predictionType]
         self.result = data.result
+
+class JawClenchPredictionMessage(PredictionMessage):
+    is_clenched: bool
+    max_peak_to_peaks: float
+
+    def __init__(self, data):
+        super().__init__(data)
+        if self.type != PredictionType.JAW_CLENCH:
+            warn('Unexpected prediction type received: ' + self.type)
+            return
+        self.is_clenched = self.result.prediction == JawClenchPredictionValues.CLENCHED
+        self.max_peak_to_peaks = self.result.maxPeakToPeaks
