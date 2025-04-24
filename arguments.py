@@ -1,4 +1,6 @@
 from argparse import ArgumentParser
+from classes import CommandLineArguments
+
 
 parser = ArgumentParser(
     prog='IDUN Guardian Jaw Clench Input Provider',
@@ -18,12 +20,6 @@ parser.add_argument(
     '-d', '--debug', action='store_true', 
     help='Enable debug mode'
 )
-
-
-class CommandLineArguments:
-    api_token: str | None
-    address: str | None
-    debug: bool
 
 
 def get_command_line_arguments() -> CommandLineArguments:
