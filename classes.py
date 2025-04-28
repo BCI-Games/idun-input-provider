@@ -6,6 +6,8 @@ class CommandLineArguments:
     api_token: str | None
     address: str | None
     debug: bool
+    websocket_host: str
+    websocket_port: int
 
 
 class PredictionType(Enum):

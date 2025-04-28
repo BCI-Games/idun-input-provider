@@ -21,6 +21,15 @@ parser.add_argument(
     help='Enable debug mode'
 )
 
+parser.add_argument(
+    "--websocket-host", default='',
+    help='Web Socket connection host'
+)
+parser.add_argument(
+    '-p', '--websocket-port', default=8005,
+    help='Web Socket connection port'
+)
+
 
 def get_command_line_arguments() -> CommandLineArguments:
     return parser.parse_args()
