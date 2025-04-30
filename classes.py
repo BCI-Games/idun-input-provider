@@ -2,15 +2,6 @@ from enum import Enum
 from warnings import warn
 
 
-class CommandLineArguments:
-    api_token: str | None
-    address: str | None
-    debug: bool
-    simulate_input: bool
-    socket_host: str
-    socket_port: int
-
-
 class PredictionType(Enum):
     JAW_CLENCH = 'JAW_CLENCH'
     BIN_HEOG = 'BIN_HEOG',

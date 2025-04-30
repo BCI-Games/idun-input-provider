@@ -1,5 +1,4 @@
 from argparse import ArgumentParser
-from classes import CommandLineArguments
 
 
 parser = ArgumentParser(
@@ -36,6 +35,14 @@ parser.add_argument(
     help='Socket connection port'
 )
 
+
+class CommandLineArguments:
+    api_token: str | None
+    address: str | None
+    debug: bool
+    simulate_input: bool
+    socket_host: str
+    socket_port: int
 
 def get_command_line_arguments() -> CommandLineArguments:
     return parser.parse_args()
