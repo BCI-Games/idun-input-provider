@@ -1,6 +1,6 @@
 from idun_guardian_sdk import GuardianClient
 from server import BroadcastServer
-from classes import JawClenchPredictionMessage
+from prediction_messages import JawClenchPredictionMessage
 
 
 class JawClenchBroadcastProxy:
