@@ -6,5 +6,8 @@ s = create_connection(('localhost', 8005))
 try:
     while True:
         data = s.recv(32)
-        print(data.decode())
+        if len(data) > 0:
+            print(data.decode())
+        else: break
+
 except KeyboardInterrupt: pass
