@@ -9,7 +9,7 @@ parser = ArgumentParser(
 )
 
 parser.add_argument(
-    '-t', '--api-token', default=None,
+    '-t', '--api-token', default=None, required=True,
     help='API Token required for IDUN API Calls'
 )
 parser.add_argument(
