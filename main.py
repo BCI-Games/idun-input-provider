@@ -1,5 +1,6 @@
-import asyncio
+from asyncio import run, gather, sleep
 from idun_guardian_sdk import GuardianClient
+from process_management import start_parent_process_dependency_loop
 from arguments import get_command_line_arguments
 from classes import JawClenchPredictionMessage
 from server import BroadcastServer, start_broadcast_server
@@ -24,13 +25,20 @@ client.subscribe_realtime_predictions(jaw_clench=True, handler=output_jaw_clench
 
 async def main():
     server = await start_broadcast_server(args.websocket_host, args.websocket_port)
+    await gather(
+        start_parent_process_dependency_loop(),
+        start_ping_loop(server)
+    )
+    # await client.start_recording()
+        
+async def start_ping_loop(server: BroadcastServer):
     while True:
         await server.send("ping")
-        await asyncio.sleep(1)
-    # await client.start_recording()
+        await sleep(1)
 
 try:
-    asyncio.run(main())
+    run(main())
 except KeyboardInterrupt: pass
+except InterruptedError: pass
 
 print("exiting...")
