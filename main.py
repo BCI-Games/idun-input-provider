@@ -8,7 +8,7 @@ from input_simulation import start_simulated_input_broadcast_loop
 
 async def main():
     args = get_command_line_arguments()
-    server = await start_broadcast_server(args.websocket_host, args.websocket_port)
+    server = await start_broadcast_server(args.socket_host, args.socket_port)
 
     if args.simulate_input:
         run_method = start_simulated_input_broadcast_loop(server)

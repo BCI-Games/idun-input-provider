@@ -7,8 +7,8 @@ class CommandLineArguments:
     address: str | None
     debug: bool
     simulate_input: bool
-    websocket_host: str
-    websocket_port: int
+    socket_host: str
+    socket_port: int
 
 
 class PredictionType(Enum):

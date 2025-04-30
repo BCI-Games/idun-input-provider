@@ -28,12 +28,12 @@ input_group.add_argument(
 )
 
 parser.add_argument(
-    '--websocket-host', default='',
-    help='Web Socket connection host'
+    '-sh', '--socket-host', default='',
+    help='Socket connection host'
 )
 parser.add_argument(
-    '-p', '--websocket-port', default=8005,
-    help='Web Socket connection port'
+    '-p', '--socket-port', default=8005,
+    help='Socket connection port'
 )
 
 
