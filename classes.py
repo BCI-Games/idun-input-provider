@@ -6,6 +6,7 @@ class CommandLineArguments:
     api_token: str | None
     address: str | None
     debug: bool
+    simulate_input: bool
     websocket_host: str
     websocket_port: int
 
