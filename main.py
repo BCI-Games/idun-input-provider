@@ -9,7 +9,7 @@ server: BroadcastServer
 
 def output_jaw_clench_prediction(data):
     prediction = JawClenchPredictionMessage(data)
-    print('Prediction received: ' + prediction.result)
+    print('Prediction received: ' + prediction.result, flush=True)
     server.send(prediction.result)
 
 
@@ -23,15 +23,14 @@ client.subscribe_realtime_predictions(jaw_clench=True, handler=output_jaw_clench
 
 
 async def main():
-    print("starting server...")
     server = await start_broadcast_server(args.websocket_host, args.websocket_port)
     while True:
-        # print("broadcasting ping")
         await server.send("ping")
         await asyncio.sleep(1)
     # await client.start_recording()
-    
 
 try:
     asyncio.run(main())
 except KeyboardInterrupt: pass
+
+print("exiting...")
